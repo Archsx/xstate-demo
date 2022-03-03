@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="app" class="ui-modal" data-state="idle" autocomplete="off">
+      <div class="ui-icon">
+        <div class="ui-lock"></div>
+      </div>
+      <div class="ui-title">This link is password-protected</div>
+      <div class="ui-subtitle">
+        <span data-show="idle">
+          Please enter the password to view this link.
+        </span>
+        <span data-show="validating"> Validating... </span>
+        <span data-show="error" class="ui-error"> Invalid password </span>
+        <span data-show="success">
+          <a class="ui-link" href="https://xstate.js.org" target="_blank"
+            >xstate.js.org</a
+          >
+        </span>
+      </div>
+      <div class="ui-password">
+        <input
+          type="password"
+          name=""
+          id=""
+          class="ui-password-input"
+          placeholder="the password is password"
+        />
+      </div>
+      <button class="ui-submit">Submit</button>
+      <button class="ui-reset" type="button" title="Reset"></button>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>

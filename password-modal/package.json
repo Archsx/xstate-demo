@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "sass": "^1.49.9"
+  },
+  "dependencies": {
+    "xstate": "^4.30.3"
+  }
+}
