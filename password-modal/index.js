@@ -1,5 +1,5 @@
 import { createMachine, interpret } from 'xstate'
-import { assign, send } from 'xstate/lib/actions'
+import { assign } from 'xstate/lib/actions'
 import './index.scss'
 
 const elApp = document.querySelector('#app')
@@ -14,18 +14,15 @@ const context = {
 const actions = {
   assignPassword: assign({
     password: (_, event) => {
-      console.log(_)
-      console.log(event)
-      console.log(1111)
       return event.value
     },
   }),
   validatePassword: (ctx) => {
     setTimeout(() => {
       if (ctx.password === 'password') {
-        send('VALID')
+        service.send('VALID')
       } else {
-        send('INVALID')
+        service.send('INVALID')
       }
     }, 2000)
   },
@@ -84,7 +81,6 @@ const passwordMachine = createMachine({
   actions,
   guards: {
     passwordEntered: (ctx) => {
-      console.log(112341)
       return ctx.password && ctx.password.length
     },
   },
@@ -107,11 +103,11 @@ const service = interpret(passwordMachine).onTransition(activate).start()
 activate(passwordMachine.initialState)
 
 elButton.addEventListener('click', () => {
-  send('SUBMIT')
+  service.send('SUBMIT')
 })
 
 elPassword.addEventListener('input', (e) => {
-  send({
+  service.send({
     type: 'CHANGE',
     value: e.target.value,
   })
@@ -119,7 +115,7 @@ elPassword.addEventListener('input', (e) => {
 
 elApp.addEventListener('submit', (e) => {
   e.preventDefault()
-  send('SUBMIT')
+  service.send('SUBMIT')
 })
 
-elReset.addEventListener('click', () => send('RESET'))
+elReset.addEventListener('click', () => service.send('RESET'))
